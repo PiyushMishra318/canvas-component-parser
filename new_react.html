@@ -1,0 +1,114 @@
+<!doctype html></!doctype>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8'></meta>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'></meta>
+    <meta httpEquiv='X-UA-Compatible' content='ie=edge'></meta>
+    <title>Title</title>
+    <style>
+      html,
+      body {
+        text-align: center;
+      }
+
+      .container-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px 200px;
+      }
+
+      .btn {
+        font-weight: bold;
+        background-color: lightgreen;
+        padding: 15px 35px;
+        border-radius: 12px;
+        border-style: none;
+        box-shadow: 2px 2px darkgreen;
+      }
+
+      .btn:hover {
+        background-color: green;
+        transition: 0.5s;
+      }
+
+      .btn:active {
+        background-color: darkgreen;
+        box-shadow: 0px 0px darkgreen;
+      }
+    </style>
+  </head>
+  <body>
+    
+<div id="app"></div>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js" ></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js'></script>
+    <script type='text/babel'>
+      ReactDOM.render( <React.Fragment> 
+      <h1>Ron Swanson Quote Generator</h1>
+      <p>(4 ways to write an ajax response)</p>
+      <section className='container-buttons'>
+        <button className='btn' id='btn-xhr' onClick={clickXHR}>XHR</button>
+        <button className='btn' id='btn-fetch' onClick={clickFetch}>Fetch</button>
+        <button className='btn' id='btn-jquery'>jQuery</button>
+        <button className='btn' id='btnAxios' onClick={clickAxios}>Axios</button>
+      </section>
+      <h2 id='text-ronsQuote'></h2>
+     </React.Fragment>,
+document.getElementById("app") );
+
+      /*XHR*/
+      function clickXHR() {
+        var XHR = new XMLHttpRequest();
+        XHR.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("text-ronsQuote").innerHTML = JSON.parse(
+              this.responseText
+            );
+          }
+        };
+        XHR.open("GET", "https://ron-swanson-quotes.herokuapp.com/v2/quotes");
+        XHR.send();
+      }
+
+      /*FETCH*/
+
+      function clickFetch() {
+        fetch("https://ron-swanson-quotes.herokuapp.com/v2/quotes")
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(ronJson) {
+            document.getElementById("text-ronsQuote").innerHTML = ronJson;
+          });
+      }
+
+      /*jQuery*/
+
+      $("#btn-jquery").click(function() {
+        $.ajax({
+          url: "https://ron-swanson-quotes.herokuapp.com/v2/quotes",
+          cache: false
+        }).done(function(html) {
+          $("#text-ronsQuote").append(html);
+        });
+      });
+
+      /* Axios */
+
+      function clickAxios() {
+        axios
+          .get("https://ron-swanson-quotes.herokuapp.com/v2/quotes")
+          .then(function(response) {
+            document.getElementById("text-ronsQuote").innerHTML =
+              response.data[0];
+          });
+      }
+    </script>
+  </body>
+</html>

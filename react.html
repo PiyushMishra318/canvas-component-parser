@@ -1,0 +1,203 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+    <!--[if gte mso 12
+      ]><style type="text/css">
+        td p {margin-top: 1em; margin-bottom: 1em }
+        p.MsoNormal, li.MsoNormal, div.MsoNormal, table.MsoNormalTable {font-family:font-family: Arial, Helvetica, sans-serif; ;}
+      </style><!
+    [endif]-->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="http://www.hhglobal.com/favicon.ico"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="http://www.hhglobal.com/favicon.ico"
+    />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style type="text/css">
+      body {
+        background: #fff;
+      }
+
+      .intro h2 {
+        color: #888;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 18px;
+      }
+
+      .intro h3 {
+        color: #555;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 16px;
+      }
+
+      .intro p {
+        color: #666;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 11pt;
+        line-height: 125%;
+      }
+
+      .intro {
+        padding-left: 20%;
+        width: 60%;
+      }
+
+      .outro h2 {
+        color: #888;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 18px;
+      }
+
+      .outro h3 {
+        color: #555;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 16px;
+      }
+
+      .outro p {
+        color: #888;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 11pt;
+        line-height: 125%;
+      }
+
+      .outro {
+        padding-left: 20%;
+        width: 60%;
+      }
+
+      img {
+        padding-left: 20%;
+        width: 60%;
+        height: auto;
+        outline: none;
+        text-decoration: none;
+        border: none;
+        -ms-interpolation-mode: bicubic;
+      }
+
+      .sign img {
+        width: 15%;
+        height: auto;
+      }
+
+      .sign p {
+        color: #888;
+        padding-left: 20%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 11pt;
+        line-height: 125%;
+      }
+
+      /*  Basic stucture
+=====================*/
+      #accordion {
+        margin: 50px auto;
+        width: 60%;
+      }
+
+      #accordion ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .accordion {
+        display: none;
+      }
+
+      .accordion:target {
+        display: block;
+      }
+
+      #accordion ul li a {
+        text-decoration: none;
+        display: block;
+        padding: 15px;
+      }
+
+      .accordion {
+        padding: 4px;
+      }
+
+      body,
+      table,
+      tr,
+      td,
+      div,
+      textarea,
+      input {
+        color: #95c11f;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 12px;
+      }
+
+      /*  Colours 
+====================*/
+      #accordion ul {
+        /*box-shadow*/
+        -webkit-box-shadow: 0 4px 10px #888;
+        -moz-box-shadow: 0 4px 10px #888;
+        box-shadow: 0 4px 10px #888;
+        /*border-radius*/
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+      }
+
+      #accordion ul li a :before {
+        background: #fff;
+        color: #999;
+        border-top: 3px solid #95c11f !important;
+      }
+
+      #accordion ul li a :after {
+        background: #efefef;
+        border-bottom: 1px solid #95c11f;
+        color: #95c11f;
+        border-top: 3px solid #95c11f !important;
+      }
+
+      #accordion h5 {
+        background: #efefef;
+        border-bottom: 1px solid #95c11f;
+        color: #95c11f;
+      }
+
+      .accordion {
+        background: #f0f0f0;
+        color: #666;
+        padding: 25px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 11pt;
+        line-height: 125%;
+      }
+
+      .accordion:target {
+        border-bottom: 3px solid #95c11f !important;
+        border-top: 1px solid #95c11f !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="reactApp"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@16/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+  ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
+  <script src="./components/main.js" type="text/babel"></script>
+</html>
