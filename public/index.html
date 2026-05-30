@@ -3,24 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Parse canvas-style HTML to AST, React, compose JSON, or split component layers." />
   <title>Canvas Component Parser</title>
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <header>
+  <header class="header">
     <h1>Canvas Component Parser</h1>
-    <p>Parse HTML to AST/React, compose canvas JSON to HTML, or split component layers.</p>
+    <p>Parse HTML to AST/React, compose component JSON to a page, or list <code>data-component</code> layers.</p>
   </header>
-  <main>
-    <nav class="tabs">
+  <main class="main">
+    <section class="card how">
+      <h2>How it works</h2>
+      <ol>
+        <li><strong>AST</strong> — Himalaya parses HTML into a JSON tree.</li>
+        <li><strong>React</strong> — AST is transformed to JSX-style markup with <code>className</code>.</li>
+        <li><strong>Compose</strong> — A JSON array of components is stitched into one HTML document.</li>
+        <li><strong>Split</strong> — Lists named layers from <code>data-component</code> attributes in a template.</li>
+      </ol>
+    </section>
+
+    <nav class="tabs" aria-label="Parse mode">
       <button type="button" data-mode="ast" class="active">AST</button>
       <button type="button" data-mode="react">React</button>
       <button type="button" data-mode="compose">Compose</button>
+      <button type="button" data-mode="split">Split</button>
     </nav>
+
+    <div class="toolbar">
+      <button type="button" id="load-template" class="btn btn--ghost">Load HTML sample</button>
+      <button type="button" id="load-compose" class="btn btn--ghost">Load compose JSON</button>
+    </div>
+
     <textarea id="input" rows="14" placeholder="Paste HTML or JSON component array…"></textarea>
-    <button id="run" type="button">Parse</button>
-    <pre id="output"></pre>
+    <button id="run" type="button" class="btn">Run</button>
+    <pre id="output" aria-live="polite"></pre>
   </main>
+  <footer class="footer">
+    <p>MIT © 2026 · <a href="mailto:piyush_mishra31@outlook.com">piyush_mishra31@outlook.com</a></p>
+  </footer>
   <script src="/app.js"></script>
 </body>
 </html>

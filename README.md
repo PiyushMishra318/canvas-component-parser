@@ -75,7 +75,12 @@ npm start
 # POST http://127.0.0.1:3000/compose  (JSON component array body)
 ```
 
-Open `/` for the upload/paste UI. Deploy on Vercel:
+### Demo
+
+- **Live:** https://coot-parser-experimental.vercel.app
+- Tabs: **AST**, **React**, **Compose**, **Split** — load HTML/JSON samples or paste your own
+
+Deploy on Vercel:
 
 ```bash
 npx vercel --prod
