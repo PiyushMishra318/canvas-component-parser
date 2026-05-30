@@ -1,0 +1,85 @@
+'use strict';
+
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+const coot = require('./index');
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.use(express.json({ limit: '2mb' }));
+app.use('/fixtures', express.static(path.join(__dirname, '../fixtures')));
+
+app.get('/', (_req, res) => {
+  res.json({
+    name: 'coot-parser',
+    description: 'Canvas-style component document parser',
+    endpoints: {
+      'GET /health': 'Health check',
+      'GET /parse/ast?file=fixtures/template.html': 'Return Himalaya AST',
+      'GET /parse/react?file=fixtures/template.html': 'Return React markup',
+      'POST /compose': 'Compose HTML from component JSON array body',
+      'GET /split?file=fixtures/template.html': 'List data-component layers',
+    },
+  });
+});
+
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok' });
+});
+
+function resolveFixture(filePath) {
+  return path.resolve(process.cwd(), filePath);
+}
+
+app.get('/parse/ast', (req, res) => {
+  const file = req.query.file || 'fixtures/template.html';
+  res.json(coot.parseHtmlFile(resolveFixture(file)));
+});
+
+app.post('/parse/ast', (req, res) => {
+  try {
+    res.json(coot.parseHtmlString(req.body.html));
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+});
+
+app.get('/parse/react', (req, res) => {
+  const file = req.query.file || 'fixtures/template.html';
+  res.type('text/plain').send(coot.htmlFileToReact(resolveFixture(file)));
+});
+
+app.post('/parse/react', (req, res) => {
+  try {
+    const ast = coot.parseHtmlString(req.body.html);
+    res.type('text/plain').send(coot.astToReact(ast));
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+});
+
+app.post('/compose', (req, res) => {
+  const components = Array.isArray(req.body) ? req.body : req.body.components;
+  if (!components) {
+    res.status(400).json({ error: 'Expected JSON array or { components: [] }' });
+    return;
+  }
+  res.type('text/html').send(coot.composeDocument(components));
+});
+
+app.get('/split', (req, res) => {
+  const file = req.query.file || 'fixtures/template.html';
+  res.json(coot.splitFromFile(resolveFixture(file)));
+});
+
+app.use(express.static(path.join(__dirname, '../public')));
+
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`canvas-component-parser demo on http://127.0.0.1:${port}`);
+  });
+}
+
+module.exports = app;

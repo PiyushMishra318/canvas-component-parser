@@ -1,0 +1,16 @@
+[
+  {
+    "elementID": "hero-block",
+    "html": "<h1>Hello from Coot</h1><p>Canvas-style positioned component.</p>",
+    "styles": [
+      "<style>body { font-family: system-ui, sans-serif; margin: 0; }</style>"
+    ],
+    "scripts": [],
+    "style": {
+      "css": { "width": "100%", "padding": "24px", "background": "#111", "color": "#fff" },
+      "hover": {},
+      "focus": {}
+    },
+    "position": { "x": 0, "y": 0 }
+  }
+]

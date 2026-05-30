@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Canvas Component Parser</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Canvas Component Parser</h1>
+    <p>Parse HTML to AST/React, compose canvas JSON to HTML, or split component layers.</p>
+  </header>
+  <main>
+    <nav class="tabs">
+      <button type="button" data-mode="ast" class="active">AST</button>
+      <button type="button" data-mode="react">React</button>
+      <button type="button" data-mode="compose">Compose</button>
+    </nav>
+    <textarea id="input" rows="14" placeholder="Paste HTML or JSON component array…"></textarea>
+    <button id="run" type="button">Parse</button>
+    <pre id="output"></pre>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
