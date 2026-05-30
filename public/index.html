@@ -7,8 +7,10 @@
   <title>Canvas Component Parser</title>
   <link rel="stylesheet" href="/styles.css" />
 </head>
-<body>
+<body class="theme-canvas">
+  <div class="bg-animation" aria-hidden="true"></div>
   <header class="header">
+    <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle color theme" title="Toggle theme"><span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">&#9728;</span><span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">&#9789;</span></button>
     <h1>Canvas Component Parser</h1>
     <p>Parse HTML or component JSON, inspect AST/React output, and preview how layers map onto an HTML <code>&lt;canvas&gt;</code>.</p>
   
@@ -63,5 +65,6 @@
   </footer>
   <script src="/canvas-renderer.js"></script>
   <script src="/app.js"></script>
+  <script src="/theme.js"></script>
 </body>
 </html>
