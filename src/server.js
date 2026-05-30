@@ -21,6 +21,7 @@ app.get('/api', (_req, res) => {
       'POST /parse/react': 'React markup from HTML body',
       'POST /compose': 'Compose HTML from component JSON array body',
       'GET /split?file=fixtures/template.html': 'List data-component layers',
+      'POST /parse/canvas': 'Canvas draw commands from HTML or component JSON',
     },
   });
 });
@@ -72,6 +73,26 @@ app.post('/compose', (req, res) => {
 app.get('/split', (req, res) => {
   const file = req.query.file || 'fixtures/template.html';
   res.json(coot.splitFromFile(resolveFixture(file)));
+});
+
+app.post('/parse/canvas', (req, res) => {
+  try {
+    const components = Array.isArray(req.body)
+      ? req.body
+      : req.body.components;
+    if (components) {
+      res.json(coot.componentsToDrawCommands(components));
+      return;
+    }
+    if (!req.body.html) {
+      res.status(400).json({ error: 'Expected { html } or { components: [] }' });
+      return;
+    }
+    const ast = coot.parseHtmlString(req.body.html);
+    res.json(coot.astToDrawCommands(ast));
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
 });
 
 app.use(express.static(path.join(__dirname, '../public')));

@@ -26,10 +26,11 @@ body {
 .header p {
   margin: 0;
   color: #cbd5e1;
+  max-width: 52rem;
 }
 
 .main {
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 1.5rem 1rem 3rem;
 }
@@ -88,6 +89,7 @@ textarea {
   padding: 0.75rem;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
+  background: #fff;
 }
 
 .btn {
@@ -101,20 +103,87 @@ textarea {
   cursor: pointer;
 }
 
+.btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
 .btn--ghost {
   background: #fff;
   color: #0f172a;
   border: 1px solid #cbd5e1;
 }
 
-pre {
+.results {
+  margin-top: 1rem;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
   background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem;
+  min-height: 200px;
+}
+
+.panel__title {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.panel__hint {
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.panel--output pre {
+  margin: 0;
+  max-height: 420px;
+}
+
+pre {
+  background: #f8fafc;
   border: 1px solid #e2e8f0;
   padding: 1rem;
   border-radius: 8px;
   overflow: auto;
   white-space: pre-wrap;
   font-size: 0.8rem;
+}
+
+.canvas-wrap {
+  overflow: auto;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  background: #f1f5f9;
+  padding: 0.5rem;
+}
+
+#preview {
+  display: block;
+  max-width: 100%;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.canvas-meta {
+  margin: 0.5rem 0 0;
+  font-size: 0.75rem;
+  color: #64748b;
 }
 
 .footer {

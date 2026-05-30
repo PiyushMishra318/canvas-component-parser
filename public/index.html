@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Parse canvas-style HTML to AST, React, compose JSON, or split component layers." />
+  <meta name="description" content="Parse canvas-style HTML to AST, React, compose JSON, or split component layers — with live canvas preview." />
   <title>Canvas Component Parser</title>
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
   <header class="header">
     <h1>Canvas Component Parser</h1>
-    <p>Parse HTML to AST/React, compose component JSON to a page, or list <code>data-component</code> layers.</p>
+    <p>Parse HTML or component JSON, inspect AST/React output, and preview how layers map onto an HTML <code>&lt;canvas&gt;</code>.</p>
   </header>
   <main class="main">
     <section class="card how">
       <h2>How it works</h2>
       <ol>
-        <li><strong>AST</strong> — Himalaya parses HTML into a JSON tree.</li>
-        <li><strong>React</strong> — AST is transformed to JSX-style markup with <code>className</code>.</li>
-        <li><strong>Compose</strong> — A JSON array of components is stitched into one HTML document.</li>
-        <li><strong>Split</strong> — Lists named layers from <code>data-component</code> attributes in a template.</li>
+        <li><strong>Input</strong> — Paste HTML, load a sample file, or paste canvas component JSON.</li>
+        <li><strong>Parser</strong> — Himalaya builds an AST; compose/split modes use the canvas document format.</li>
+        <li><strong>Parse output</strong> — AST, React, composed HTML, or split layer names (tabs below).</li>
+        <li><strong>Canvas preview</strong> — Draw commands (<code>fillRect</code>, <code>fillText</code>, rounded rects) visualize boxes, text, and buttons from the parsed structure.</li>
       </ol>
     </section>
 
@@ -32,16 +32,34 @@
 
     <div class="toolbar">
       <button type="button" id="load-template" class="btn btn--ghost">Load HTML sample</button>
+      <button type="button" id="load-canvas-demo" class="btn btn--ghost">Load canvas demo</button>
       <button type="button" id="load-compose" class="btn btn--ghost">Load compose JSON</button>
     </div>
 
-    <textarea id="input" rows="14" placeholder="Paste HTML or JSON component array…"></textarea>
-    <button id="run" type="button" class="btn">Run</button>
-    <pre id="output" aria-live="polite"></pre>
+    <textarea id="input" rows="12" placeholder="Paste HTML or JSON component array…"></textarea>
+    <button id="run" type="button" class="btn">Parse</button>
+
+    <section class="results" aria-label="Parse results and canvas preview">
+      <div class="results-grid">
+        <div class="panel panel--output">
+          <h2 class="panel__title">Parse output</h2>
+          <pre id="output" aria-live="polite">Run Parse to see AST, React, HTML, or split results.</pre>
+        </div>
+        <div class="panel panel--canvas">
+          <h2 class="panel__title">Canvas preview</h2>
+          <p class="panel__hint">Live render of rectangles, rounded buttons, and text extracted from the parser.</p>
+          <div class="canvas-wrap">
+            <canvas id="preview" aria-label="Parsed component canvas preview"></canvas>
+          </div>
+          <p id="canvas-meta" class="canvas-meta"></p>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="footer">
     <p>MIT © 2026 · <a href="https://piyushm.dev">piyushm.dev</a></p>
   </footer>
+  <script src="/canvas-renderer.js"></script>
   <script src="/app.js"></script>
 </body>
 </html>

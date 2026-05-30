@@ -7,6 +7,8 @@ const astToHtml = require('./ast-to-html');
 const astToReact = require('./ast-to-react');
 const composeDocument = require('./component-document');
 const splitComponents = require('./split-components');
+const astToDrawCommands = require('./ast-to-draw-commands');
+const componentsToDrawCommands = require('./components-to-draw-commands');
 
 function readInput(inputPath) {
   if (!inputPath) {
@@ -58,4 +60,6 @@ module.exports = {
   splitComponents,
   astToHtml,
   astToReact,
+  astToDrawCommands,
+  componentsToDrawCommands,
 };
