@@ -3,7 +3,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const coot = require('./index');
+const parser = require('./index');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -36,12 +36,12 @@ function resolveFixture(filePath) {
 
 app.get('/parse/ast', (req, res) => {
   const file = req.query.file || 'fixtures/template.html';
-  res.json(coot.parseHtmlFile(resolveFixture(file)));
+  res.json(parser.parseHtmlFile(resolveFixture(file)));
 });
 
 app.post('/parse/ast', (req, res) => {
   try {
-    res.json(coot.parseHtmlString(req.body.html));
+    res.json(parser.parseHtmlString(req.body.html));
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
@@ -49,13 +49,13 @@ app.post('/parse/ast', (req, res) => {
 
 app.get('/parse/react', (req, res) => {
   const file = req.query.file || 'fixtures/template.html';
-  res.type('text/plain').send(coot.htmlFileToReact(resolveFixture(file)));
+  res.type('text/plain').send(parser.htmlFileToReact(resolveFixture(file)));
 });
 
 app.post('/parse/react', (req, res) => {
   try {
-    const ast = coot.parseHtmlString(req.body.html);
-    res.type('text/plain').send(coot.astToReact(ast));
+    const ast = parser.parseHtmlString(req.body.html);
+    res.type('text/plain').send(parser.astToReact(ast));
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
@@ -67,12 +67,12 @@ app.post('/compose', (req, res) => {
     res.status(400).json({ error: 'Expected JSON array or { components: [] }' });
     return;
   }
-  res.type('text/html').send(coot.composeDocument(components));
+  res.type('text/html').send(parser.composeDocument(components));
 });
 
 app.get('/split', (req, res) => {
   const file = req.query.file || 'fixtures/template.html';
-  res.json(coot.splitFromFile(resolveFixture(file)));
+  res.json(parser.splitFromFile(resolveFixture(file)));
 });
 
 app.post('/parse/canvas', (req, res) => {
@@ -81,15 +81,15 @@ app.post('/parse/canvas', (req, res) => {
       ? req.body
       : req.body.components;
     if (components) {
-      res.json(coot.componentsToDrawCommands(components));
+      res.json(parser.componentsToDrawCommands(components));
       return;
     }
     if (!req.body.html) {
       res.status(400).json({ error: 'Expected { html } or { components: [] }' });
       return;
     }
-    const ast = coot.parseHtmlString(req.body.html);
-    res.json(coot.astToDrawCommands(ast));
+    const ast = parser.parseHtmlString(req.body.html);
+    res.json(parser.astToDrawCommands(ast));
   } catch (e) {
     res.status(400).json({ error: e.message });
   }

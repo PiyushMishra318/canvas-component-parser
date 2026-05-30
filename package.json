@@ -1,17 +1,17 @@
 {
   "name": "canvas-component-parser",
   "version": "2.0.0",
-  "description": "COOT/canvas-style component parser — HTML AST to React/JSX and composed pages",
+  "description": "Canvas-style component parser — HTML AST to React/JSX and composed pages",
   "main": "src/index.js",
   "bin": {
-    "canvas-component-parser": "bin/coot-parser.js"
+    "canvas-component-parser": "bin/canvas-component-parser.js"
   },
   "scripts": {
     "start": "node src/server.js",
     "test": "node --test test/*.test.js",
-    "parse:ast": "node bin/coot-parser.js ast fixtures/template.html",
-    "parse:react": "node bin/coot-parser.js react fixtures/template.html",
-    "compose": "node bin/coot-parser.js compose fixtures/components.sample.json"
+    "parse:ast": "node bin/canvas-component-parser.js ast fixtures/template.html",
+    "parse:react": "node bin/canvas-component-parser.js react fixtures/template.html",
+    "compose": "node bin/canvas-component-parser.js compose fixtures/components.sample.json"
   },
   "keywords": ["html", "react", "parser", "jsx", "canvas", "design-to-code"],
   "author": "Piyush Mishra",

@@ -1,7 +1,5 @@
 # canvas-component-parser
 
-> npm package: `canvas-component-parser` (repo folder: `coot-parser--experimental`)
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen?logo=node.js&logoColor=white)](package.json)
 
@@ -12,7 +10,7 @@ Experimental parser for a **Canva-style design editor** custom component structu
 - **Composed HTML pages** from positioned component documents
 - **Split component files** via `data-component="ComponentName"` layer markers
 
-Built while exploring design-to-code for a Canva competitor workflow.
+Built while exploring design-to-code for canvas-style editor exports.
 
 ## Component document format
 
@@ -46,8 +44,8 @@ Markup exported from the editor can include `data-component` attributes to ident
 ## Install
 
 ```bash
-git clone git@github.com:PiyushMishra318/coot-parser--experimental.git
-cd coot-parser--experimental
+git clone git@github.com:PiyushMishra318/canvas-component-parser.git
+cd canvas-component-parser
 npm install
 ```
 
@@ -55,16 +53,16 @@ npm install
 
 ```bash
 # AST JSON
-node bin/coot-parser.js ast fixtures/template.html --out ast.json
+node bin/canvas-component-parser.js ast fixtures/template.html --out ast.json
 
 # React-friendly markup
-node bin/coot-parser.js react fixtures/template.html --out out.jsx.html
+node bin/canvas-component-parser.js react fixtures/template.html --out out.jsx.html
 
 # Compose canvas JSON → full page
-node bin/coot-parser.js compose fixtures/components.sample.json --out page.html
+node bin/canvas-component-parser.js compose fixtures/components.sample.json --out page.html
 
 # Split data-component layers
-node bin/coot-parser.js split fixtures/template.html --out-dir dist/components
+node bin/canvas-component-parser.js split fixtures/template.html --out-dir dist/components
 ```
 
 ## Demo server
@@ -77,7 +75,7 @@ npm start
 
 ### Demo
 
-- **Live:** https://coot-parser-experimental.vercel.app
+- **Live:** https://canvas-component-parser.vercel.app
 - Tabs: **AST**, **React**, **Compose**, **Split** — load HTML/JSON samples or paste your own
 
 Deploy on Vercel:
@@ -96,7 +94,7 @@ src/
 ├── split-components.js     # data-component layer extraction
 └── support/                # Tags, JSX attribute helpers
 fixtures/                   # Sample HTML + component JSON
-bin/coot-parser.js          # CLI
+bin/canvas-component-parser.js  # CLI
 ```
 
 ## Tests
