@@ -11,14 +11,14 @@ const port = process.env.PORT || 3000;
 app.use(express.json({ limit: '2mb' }));
 app.use('/fixtures', express.static(path.join(__dirname, '../fixtures')));
 
-app.get('/', (_req, res) => {
+app.get('/api', (_req, res) => {
   res.json({
-    name: 'coot-parser',
+    name: 'canvas-component-parser',
     description: 'Canvas-style component document parser',
     endpoints: {
       'GET /health': 'Health check',
-      'GET /parse/ast?file=fixtures/template.html': 'Return Himalaya AST',
-      'GET /parse/react?file=fixtures/template.html': 'Return React markup',
+      'POST /parse/ast': 'Himalaya AST from HTML body',
+      'POST /parse/react': 'React markup from HTML body',
       'POST /compose': 'Compose HTML from component JSON array body',
       'GET /split?file=fixtures/template.html': 'List data-component layers',
     },
@@ -75,6 +75,9 @@ app.get('/split', (req, res) => {
 });
 
 app.use(express.static(path.join(__dirname, '../public')));
+app.get('/', (_req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 
 if (require.main === module) {
   app.listen(port, () => {
