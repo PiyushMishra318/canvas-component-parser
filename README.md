@@ -1,3 +1,8 @@
+# Author's Note (NOT AI GENERATED)
+
+> Similar to [SVG-Palette-Processor](https://github.com/PiyushMishra318/SVG-Palette-Processor) was used in the same canva competitor project as a parser for html/react component.
+> IDK how functional this is after I handed this AI. Archiving...
+
 # canvas-component-parser
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
